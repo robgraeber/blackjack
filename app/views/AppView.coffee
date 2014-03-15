@@ -12,7 +12,7 @@ class window.AppView extends Backbone.View
     "click .stand-button": -> 
       @deactiveButtons()
       @model.get('playerHand').stand()
-      @model.dealerPlay()
+      @model.dealerReveal()
 
   deactiveButtons: ->
     console.log("deactiveButtons")

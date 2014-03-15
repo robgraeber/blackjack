@@ -25,7 +25,7 @@
       "click .stand-button": function() {
         this.deactiveButtons();
         this.model.get('playerHand').stand();
-        return this.model.dealerPlay();
+        return this.model.dealerReveal();
       }
     };
 

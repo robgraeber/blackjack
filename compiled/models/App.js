@@ -15,60 +15,68 @@
     }
 
     App.prototype.initialize = function() {
-      var deck;
-      this.set('deck', deck = new Deck());
+      this.set("playerChips", 20000);
+      this.set('deck', new Deck());
       return this.dealNewHand();
     };
 
-    App.prototype.dealerPlay = function() {
+    App.prototype.dealerReveal = function() {
       this.get("dealerHand").at(0).set("revealed", true);
       return setTimeout(this.dealerPlayCard, 1000);
     };
 
     App.prototype.dealerPlayCard = function() {
+      var _this = this;
       if (this.get("dealerHand").scores()[0] < 17) {
         this.get("dealerHand").hit();
       }
       if (this.get("dealerHand").scores()[0] < 17) {
-        return setTimeout(this.dealerPlayCard, 1000);
+        setTimeout(this.dealerPlayCard, 1000);
       } else if (this.get("dealerHand").scores()[0] > 21) {
-        console.log("Dealer lose!!!");
-        return this.restartGame();
+        this.playerWin(true);
       } else {
         if (this.get("dealerHand").scores()[0] > this.get("playerHand").scores()[0]) {
-          console.log("dealer wins!");
+          this.playerWin(false);
         } else if (this.get("dealerHand").scores()[0] < this.get("playerHand").scores()[0]) {
-          console.log("player wins :(");
+          this.playerWin(true);
         } else {
           console.log("game draw");
         }
-        return this.restartGame();
+      }
+      return setTimeout(function() {
+        return _this.restartGame();
+      }, 1000);
+    };
+
+    App.prototype.playerWin = function(isTrue) {
+      if (isTrue) {
+        console.log("player wins!");
+        return this.set("playerChips", this.get("playerChips") + 1000);
+      } else {
+        console.log("dealer wins!");
+        return this.set("playerChips", this.get("playerChips") - 1000);
       }
     };
 
     App.prototype.dealNewHand = function() {
       var _this = this;
+      console.log("Player chips: ", this.get("playerChips"));
       this.set('playerHand', this.get("deck").dealPlayer());
       this.set('dealerHand', this.get("deck").dealDealer());
       return this.get('playerHand').on('add remove change', function() {
         if (_this.get("playerHand").scores()[0] > 21) {
-          console.log("Player lose!!!");
-          return _this.restartGame();
+          _this.playerWin(false);
+          return setTimeout(function() {
+            return _this.restartGame();
+          }, 1000);
         }
       });
     };
 
     App.prototype.restartGame = function() {
-      var _this = this;
       console.log("restarting game");
-      this.set('playerHand', this.get("deck").dealPlayer());
-      this.set('dealerHand', this.get("deck").dealDealer());
-      return this.get('playerHand').on('add remove change', function() {
-        if (_this.get("playerHand").scores()[0] > 21) {
-          console.log("Player lose!!!");
-          return _this.restartGame();
-        }
-      });
+      this.set('deck', new Deck());
+      return this.dealNewHand();
     };
 
     return App;

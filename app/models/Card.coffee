@@ -16,5 +16,5 @@ class window.Card extends Backbone.Model
         else params.rank
 
   flip: ->
-    @set ('revealed', !@get 'revealed')
+    @set 'revealed', !@get('revealed')
     @

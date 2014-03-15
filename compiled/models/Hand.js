@@ -35,8 +35,8 @@
       score = this.reduce(function(score, card) {
         return score + (card.get('revealed') ? card.get('value') : 0);
       }, 0);
-      if (hasAce) {
-        return [score, score + 10];
+      if (hasAce && score + 10 <= 21) {
+        return [score + 10];
       } else {
         return [score];
       }

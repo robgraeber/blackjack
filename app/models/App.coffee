@@ -1,6 +1,7 @@
 #todo: refactor to have a game beneath the outer blackjack model
 class window.App extends Backbone.Model
   initialize: ->
+    @set 'history', new History()
     @set "playerChips", 20000
     @set 'deck', new Deck()
     @dealNewHand()
@@ -49,6 +50,13 @@ class window.App extends Backbone.Model
         , 1000
 
   restartGame: ->
+    play = new Play 
+      playerHand: @get "playerHand" 
+      dealerHand: @get "dealerHand"
+      chipCount: @get "playerChips"
+    
+    @get("history").add(play)
+    console.log(@get "history")
     console.log("restarting game")
     @set 'deck', new Deck()
     @dealNewHand()

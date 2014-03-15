@@ -25,7 +25,6 @@
     };
 
     HandView.prototype.render = function() {
-      this.$el.children().detach();
       this.$el.html(this.template(this.collection));
       this.$el.append(this.collection.map(function(card) {
         return new CardView({

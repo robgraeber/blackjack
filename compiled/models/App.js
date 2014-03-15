@@ -15,6 +15,7 @@
     }
 
     App.prototype.initialize = function() {
+      this.set('history', new History());
       this.set("playerChips", 20000);
       this.set('deck', new Deck());
       return this.dealNewHand();
@@ -74,6 +75,14 @@
     };
 
     App.prototype.restartGame = function() {
+      var play;
+      play = new Play({
+        playerHand: this.get("playerHand"),
+        dealerHand: this.get("dealerHand"),
+        chipCount: this.get("playerChips")
+      });
+      this.get("history").add(play);
+      console.log(this.get("history"));
       console.log("restarting game");
       this.set('deck', new Deck());
       return this.dealNewHand();

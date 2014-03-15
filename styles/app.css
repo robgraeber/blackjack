@@ -1,4 +1,8 @@
+body{
+  background-color: green;
+}
 .card {
+  background-color: white;
   float: left;
   border: solid 1px black;
   width: 100px;
@@ -6,7 +10,43 @@
   height: 140px;
   margin-right: 20px;
 }
+.main{
+  width:900px;
+}
+th{
+  padding: 5px;
+}
+th.headerRow{
+  background-color: #ECF0F7; 
+}
+th.titleRow{
+  font-size: 1.2em;
+}
+td{
+  padding: 5px;
+}
+td.dataRow{
+  background-color: #d0dafd;
+  border-top: 1px solid #fff;
+}
+tfoot{
+  height:50px;
+}
+.history{
+  border: solid 1px #DDD;
+  background: #b9c9fe;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 0.8em;
+  width: 400px;
+  text-align: left;
+  border-spacing: 0px;
+  margin: 20px;
+  border-radius: 15px;
+}
 
+.history-container{
+  float:right;
+}
 .covered {
   background-color: black;
 }

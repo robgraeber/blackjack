@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "History.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "app/models/History.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,GAAA,EAAA;KAAA;oSAAA;;CAAA,CAAM,IAAM;CAEV;;;;;CAAA;;CAAA,EAAO,CAAP,CAAA;;CAAA;;CAF2B,OAAQ;CAArC"
+}

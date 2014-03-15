@@ -12,8 +12,13 @@
       return _ref;
     }
 
+    AppView.prototype.className = "main";
+
     AppView.prototype.template = _.template('\
+    <div>\
     <button class="hit-button">Hit</button> <button class="stand-button">Stand</button>\
+    </div>\
+    <div class="history-container"></div>\
     <div class="player-hand-container"></div>\
     <div class="dealer-hand-container"></div>\
   ');
@@ -30,7 +35,9 @@
     };
 
     AppView.prototype.deactiveButtons = function() {
-      return console.log("deactiveButtons");
+      console.log("deactiveButtons");
+      $(".hit-button").prop("disabled", true);
+      return $(".stand-button").prop("disabled", true);
     };
 
     AppView.prototype.initialize = function() {
@@ -47,8 +54,11 @@
       this.$('.player-hand-container').html(new HandView({
         collection: this.model.get('playerHand')
       }).el);
-      return this.$('.dealer-hand-container').html(new HandView({
+      this.$('.dealer-hand-container').html(new HandView({
         collection: this.model.get('dealerHand')
+      }).el);
+      return this.$('.history-container').html(new HistoryView({
+        collection: this.model.get('history')
       }).el);
     };
 

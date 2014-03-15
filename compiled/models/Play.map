@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "Play.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "app/models/Play.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA,GAAA,EAAA;KAAA;oSAAA;;CAAA,CAAM,IAAM;CAEV;;;;;CAAA;;CAAA,EAAY,GAAA,GAAC,CAAb;CACG,EAAD,CAAC,SAAD;CACE,CAAY,IAAM,EAAlB,EAAA;CAAA,CACY,IAAM,EAAlB,EAAA;CADA,CAEW,IAAM,EAAjB,CAAA;CAJQ,OACV;CADF,IAAY;;CAAZ;;CAFwB,OAAQ;CAAlC"
+}

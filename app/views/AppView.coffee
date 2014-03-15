@@ -7,10 +7,21 @@ class window.AppView extends Backbone.View
   '
 
   events:
-    "click .hit-button": -> @model.get('playerHand').hit()
-    "click .stand-button": -> @model.get('playerHand').stand()
+    "click .hit-button": -> 
+      @model.get('playerHand').hit()
+    "click .stand-button": -> 
+      @deactiveButtons()
+      @model.get('playerHand').stand()
+      @model.dealerPlay()
 
-  initialize: -> @render()
+  deactiveButtons: ->
+    console.log("deactiveButtons")
+
+  initialize: -> 
+    @render()
+    @model.on "change:dealerHand", => 
+      @render()
+    
 
   render: ->
     @$el.children().detach()

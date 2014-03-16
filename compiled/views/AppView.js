@@ -43,8 +43,12 @@
     AppView.prototype.initialize = function() {
       var _this = this;
       this.render();
-      return this.model.on("change:dealerHand", function() {
+      this.model.on("change:dealerHand", function() {
         return _this.render();
+      });
+      return this.model.on("playerLose", function() {
+        console.log("playerLose Event!!");
+        return _this.deactiveButtons();
       });
     };
 

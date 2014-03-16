@@ -2,14 +2,20 @@ class window.CardView extends Backbone.View
 
   className: 'card'
 
-  template: _.template '<%= rankName %> of <%= suitName %>'
-
   initialize: ->
     @model.on 'change', => @render
     @render()
 
   render: ->
-    
+    cardId = "card-"+@model.translateValue();
+    template = document.getElementById(cardId).innerHTML;
+    # Mustache.escapeHtml = function (text) { return text.replace(/\"/g, '\\"'; }
+    output = Mustache.render template, 
+      suit:
+        symbol: @model.translate(@model.get('suitName'))
+        name:@model.get('suitName').toLowerCase()
+
     @$el.children().detach().end().html
-    @$el.html @template @model.attributes
+    @$el.html output
+    @$el.addClass(@model.get("suitName").toLowerCase())
     @$el.addClass 'covered' unless @model.get 'revealed'

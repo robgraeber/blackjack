@@ -14,8 +14,6 @@
 
     CardView.prototype.className = 'card';
 
-    CardView.prototype.template = _.template('<%= rankName %> of <%= suitName %>');
-
     CardView.prototype.initialize = function() {
       var _this = this;
       this.model.on('change', function() {
@@ -25,8 +23,18 @@
     };
 
     CardView.prototype.render = function() {
+      var cardId, output, template;
+      cardId = "card-" + this.model.translateValue();
+      template = document.getElementById(cardId).innerHTML;
+      output = Mustache.render(template, {
+        suit: {
+          symbol: this.model.translate(this.model.get('suitName')),
+          name: this.model.get('suitName').toLowerCase()
+        }
+      });
       this.$el.children().detach().end().html;
-      this.$el.html(this.template(this.model.attributes));
+      this.$el.html(output);
+      this.$el.addClass(this.model.get("suitName").toLowerCase());
       if (!this.model.get('revealed')) {
         return this.$el.addClass('covered');
       }

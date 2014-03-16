@@ -13,6 +13,6 @@ class window.HandView extends Backbone.View
     
     @$el.html @template @collection
     @$el.append @collection.map (card) ->
-      new CardView(model: card).$el
+      new CardView(model: card).$el.addClass("bigCard")
     @$('.score').text @collection.scores()[0]
 

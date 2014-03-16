@@ -39,6 +39,50 @@
       return this;
     };
 
+    Card.prototype.translate = function(suitName) {
+      switch (suitName) {
+        case 'Spades':
+          return "&spades;";
+        case 'Diamonds':
+          return "&diams;";
+        case 'Hearts':
+          return "&hearts;";
+        case 'Clubs':
+          return "&clubs;";
+      }
+    };
+
+    Card.prototype.translateValue = function() {
+      switch (this.get('rankName')) {
+        case 2:
+          return "two";
+        case 3:
+          return "three";
+        case 4:
+          return "four";
+        case 5:
+          return "five";
+        case 6:
+          return "six";
+        case 7:
+          return "seven";
+        case 8:
+          return "eight";
+        case 9:
+          return "nine";
+        case 10:
+          return "ten";
+        case "King":
+          return "king";
+        case "Ace":
+          return "ace";
+        case "Jack":
+          return "jack";
+        case "Queen":
+          return "queen";
+      }
+    };
+
     return Card;
 
   })(Backbone.Model);

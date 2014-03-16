@@ -27,6 +27,9 @@ class window.AppView extends Backbone.View
     @render()
     @model.on "change:dealerHand", => 
       @render()
+    @model.on "playerLose", => 
+      console.log("playerLose Event!!");
+      @deactiveButtons()
     
 
   render: ->

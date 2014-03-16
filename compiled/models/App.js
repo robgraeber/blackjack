@@ -67,9 +67,10 @@
       return this.get('playerHand').on('add remove change', function() {
         if (_this.get("playerHand").scores()[0] > 21) {
           _this.playerWin(false);
+          _this.trigger("playerLose", _this);
           return setTimeout(function() {
             return _this.restartGame();
-          }, 1000);
+          }, 500);
         }
       });
     };

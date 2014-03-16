@@ -29,7 +29,7 @@
       this.$el.append(this.collection.map(function(card) {
         return new CardView({
           model: card
-        }).$el;
+        }).$el.addClass("bigCard");
       }));
       return this.$('.score').text(this.collection.scores()[0]);
     };

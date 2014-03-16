@@ -21,16 +21,21 @@
     };
 
     HistoryEntryView.prototype.render = function() {
-      var hand, td1, td2, td3;
-      hand = this.model.get("playerHand");
+      var hand, td1, td2, td3,
+        _this = this;
       td1 = $("<td class = 'dataRow'></td>");
+      hand = this.model.get("playerHand");
       hand.each(function(card) {
-        return td1.html(td1.html() + card.get("suitName") + " - " + card.get("rankName") + "<br/>");
+        return td1.append(new CardView({
+          model: card
+        }).$el.addClass("smallCard"));
       });
-      hand = this.model.get("dealerHand");
       td2 = $("<td class = 'dataRow'></td>");
+      hand = this.model.get("dealerHand");
       hand.each(function(card) {
-        return td2.html(td2.html() + card.get("suitName") + " - " + card.get("rankName") + "<br/>");
+        return td2.append(new CardView({
+          model: card
+        }).$el.addClass("smallCard"));
       });
       td3 = $("<td class = 'dataRow'></td>").text(this.model.get("chipCount"));
       return this.$el.append(td1).append(td2).append(td3);

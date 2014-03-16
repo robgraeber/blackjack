@@ -45,11 +45,13 @@ class window.App extends Backbone.Model
     @get('playerHand').on 'add remove change', => 
       if @get("playerHand").scores()[0] > 21
         @playerWin false
+        @trigger("playerLose", @)
         setTimeout => 
           @restartGame()
-        , 1000
+        , 500
 
   restartGame: ->
+
     play = new Play 
       playerHand: @get "playerHand" 
       dealerHand: @get "dealerHand"

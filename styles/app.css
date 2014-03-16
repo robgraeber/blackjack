@@ -13,6 +13,12 @@ body{
 .main{
   width:900px;
 }
+.smallCard{
+  font-size:1.6px;
+}
+.bigCard{
+  font-size:6px;
+}
 th{
   padding: 5px;
 }

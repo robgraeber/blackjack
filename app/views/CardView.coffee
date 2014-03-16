@@ -7,7 +7,11 @@ class window.CardView extends Backbone.View
     @render()
 
   render: ->
-    cardId = "card-"+@model.translateValue();
+    if @model.get "revealed"
+      cardId = "card-"+@model.translateValue()
+    else
+      cardId = "card-back"
+
     template = document.getElementById(cardId).innerHTML;
     # Mustache.escapeHtml = function (text) { return text.replace(/\"/g, '\\"'; }
     output = Mustache.render template, 
@@ -18,4 +22,3 @@ class window.CardView extends Backbone.View
     @$el.children().detach().end().html
     @$el.html output
     @$el.addClass(@model.get("suitName").toLowerCase())
-    @$el.addClass 'covered' unless @model.get 'revealed'
